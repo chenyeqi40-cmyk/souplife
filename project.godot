@@ -1,0 +1,24 @@
+; Editable Godot 4 project.
+config_version=5
+
+[application]
+config/name="末日泡面摊 V4 · 荒路一碗"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/description="参考图美术白盒 / 一对一慢节奏经营 / 动态天气与昼夜"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/size/window_width_override=1280
+window/size/window_height_override=800
+window/stretch/mode="canvas_items"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+environment/defaults/default_clear_color=Color(0.09,0.12,0.13,1)
+
+[audio]
+driver/enable_input=false

@@ -1,0 +1,39 @@
+# Godot generated cache. Keep resource .import settings and script .uid files.
+.godot/
+.import/
+export_credentials.cfg
+
+# Builds and local verification output
+/build/
+/exports/
+/Windows试玩/
+/web/
+/qa-output/
+*.exe
+*.pck
+*.zip
+*.log
+*.tmp
+*.bak
+
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+
+# Personal environment, credentials, and saves
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*.json
+*credentials*.cfg
+stall_save*.json
+english_demo_save.json
+*_test_save*.json
+*_qa_save*.json

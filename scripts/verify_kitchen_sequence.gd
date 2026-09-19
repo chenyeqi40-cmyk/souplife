@@ -1,0 +1,133 @@
+extends SceneTree
+var game
+var count=0
+var failed=0
+func _initialize():call_deferred("run")
+func check(ok:bool,label:String):
+	count+=1
+	if not ok:failed+=1;push_error("KITCHEN_FAIL %d: %s"%[count,label])
+	else:print("KITCHEN_PASS %d: %s"%[count,label])
+func capture(name:String):
+	if DisplayServer.get_name()!="headless":await game._capture(name)
+func move(p:Vector2):
+	var event=InputEventMouseMotion.new();event.position=p;event.global_position=p;game.get_viewport().push_input(event)
+func click(p:Vector2):game._click_for_qa(p)
+func drag(from:Vector2,to:Vector2):
+	move(from)
+	var press=InputEventMouseButton.new();press.position=from;press.global_position=from;press.button_index=MOUSE_BUTTON_LEFT;press.pressed=true;game.get_viewport().push_input(press)
+	move(to)
+	var release=InputEventMouseButton.new();release.position=to;release.global_position=to;release.button_index=MOUSE_BUTTON_LEFT;release.pressed=false;game.get_viewport().push_input(release)
+func clear_meal():
+	game.stage=0;game.selected.clear();game.prep.clear_board();game.prep.reset_packet();game.simmer.reset()
+	game.v5.cancel_transition();game.v4.close_conversation();game.fieldlife.closeup.hide();game.fieldlife.close_fridge();game.fieldlife.pointer=Vector2(640,680)
+	game._refresh()
+func run():
+	game=load("res://main.tscn").instantiate()
+	game.new_game_requested=true;game.save_path="user://qa_verify_kitchen_sequence_save.json"
+	root.add_child(game);game.set_process(false);game.qa_mode=true
+	game.title_screen.hide();game.tutorial.active=false;game.tutorial.overlay.hide();game.v4.guide_seconds=0;game.v4.close_conversation();game.v5.cancel_transition()
+	game.auto_time=false;game.auto_weather=false;game.hour=10;game.weather=0
+	game.screenshot_dir="user://qa_verify_kitchen_sequence"
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(game.screenshot_dir))
+	game._refresh();game.simmer.refresh()
+	await process_frame
+	check(game.simmer.panel.visible and game.simmer.cells.size()==5 and game.simmer.rows.is_empty(),"One five-cell timeline is visible before ignition, no individual rows")
+	click(game.simmer.cells[2].button.get_global_rect().get_center());check(game.simmer.planned_cells==3,"Clicking pre-fire timeline sets the common stopping cell")
+	game.simmer.set_plan(5)
+	move(Vector2(894,546));game.simmer.refresh()
+	check(game.simmer.hover_panel.visible and game.simmer.hovered_id==0 and game.simmer.hover_title.text.contains("5 格"),"Hover beef shows five-cell best doneness")
+	move(Vector2(1174,351));game.simmer.refresh()
+	check(game.simmer.hovered_id==2 and game.simmer.hover_title.text.contains("2 格") and game.simmer.hover_text.text.contains("第 3 格下锅"),"Hover greens explains two cells and insertion at global cell three")
+	move(Vector2(640,250));game.simmer.refresh();check(not game.simmer.hover_panel.visible,"Hover hint closes outside ingredients")
+	var water_before=game.prep.water_store
+	click(Vector2(1180,350));game.prep.tick(.35)
+	check(game.prep.staged_food.has(2) and not game.selected.has(2),"Harvest sends greens to preparation, never straight into pot")
+	var flight_point=game.prep.ready_rect(2).get_center()
+	check(flight_point.x>620 and flight_point.x<1180 and game.prep.ready_flights.has(2),"Harvested leaves visibly fly between drawer and cutting board")
+	game.prep.tick(.5)
+	check(game.prep.BOARD.has_point(game.prep.ready_rect(2).get_center()),"Harvested greens settle on the board")
+	check(game.prep.farm_water[1]==0 and game.prep.farm_growth[1]==0 and game.prep.stock[2]==1,"Harvest removes one plant and reserves one stock portion")
+	click(Vector2(1180,350))
+	check(game.irrigation.active==1,"Clicking harvested drawer immediately waters it while harvested greens still wait on board")
+	game.irrigation.tick(1.2);var saved_water=game.irrigation.to_save();game.irrigation.restore(saved_water);game.irrigation.tick(1.3)
+	check(game.prep.farm_water[1]==1 and game.prep.water_store==water_before-1 and game.irrigation.valve==0,"Resumed single watering finishes, closes valve and charges water once")
+	game.prep.tick(5)
+	check(game.prep.farm_growth[1]>0,"One watering is enough to start regrowth")
+	check(not game.irrigation.start(1) and game.prep.water_store==water_before-1,"Regrowing plant cannot waste water on a second cycle")
+	game.prep.tick(31);check(game.prep.farm_growth[1]==1,"One watered plant fully regrows")
+	move(Vector2(1180,350));game.simmer.refresh();await capture("08_备料与最佳熟度.png")
+	var stock_beef=game.prep.stock[0]
+	click(Vector2(895,548));game.prep.tick(.4);game.simmer.refresh()
+	check(game.prep.board_item==0 and game.prep.ready_rect(2).get_center().y<542,"Meat on the board slides prepared greens to the rear edge")
+	await capture("09_切肉时蔬菜暂存.png")
+	for i in range(3):
+		click(Vector2(690,590));await create_timer(.15).timeout;game.prep.tick(.4)
+	check(game.prep.cuts==3 and not game.selected.has(0),"Three real chopping clicks cut meat without putting it in pot")
+	click(Vector2(700,590));game.prep.tick(.4)
+	check(game.prep.staged_food.has(0) and game.prep.board_item==-1 and game.prep.stock[0]==stock_beef,"Cut meat is prepared, stock is not charged before insertion")
+	check(game.prep.ready_rect(2).get_center().y>=542,"Prepared greens return to the cleared board")
+	click(Vector2(973,652));click(Vector2(1005,546));game.prep.tick(.4)
+	check(game.prep.staged_food.has(1) and game.prep.staged_food.has(3) and game.selected.is_empty(),"Egg and spice are prepared on the board while pot stays empty")
+	game.simmer.tick(12)
+	check(not game.simmer.started and game.simmer.portions.is_empty(),"Prepared food never gains cooking time while waiting before ignition")
+	click(Vector2(445,561));check(game.stage==1 and game.v4.has_water and not game.v4.seasoned,"Pot click starts clear water heating after preparation")
+	game._process(3.6);check(game.stage==2,"Water heating alone advances to packet stage")
+	click(Vector2(270,610));await create_timer(1.7).timeout
+	check(game.prep.packet_stage==1 and game.stage==2,"First packet click tears the actual bag")
+	click(Vector2(585,533));await create_timer(1.1).timeout
+	check(game.stage==3 and game.prep.packet_stage==2 and game.v4.seasoned and not game.simmer.started,"Noodles and seasoning enter but timeline waits for first real ingredient")
+	click(game.prep.ready_rect(3).get_center())
+	check(game.selected.has(3) and not game.simmer.started,"Spice enters without starting or occupying food timing")
+	click(game.prep.ready_rect(0).get_center())
+	check(game.selected.has(0) and game.simmer.started and game.simmer.units(0)==0 and game.prep.stock[0]==stock_beef-1,"First beef insertion starts common clock at zero and consumes stock once")
+	game.simmer.tick(4)
+	check(not game.simmer.portions.has(1) and not game.simmer.portions.has(2),"Waiting egg and greens do not accumulate cooking time")
+	game.tutorial.restart();game.tutorial.advance_text();game.tutorial.advance_text();game.tutorial.tick(.1)
+	await capture("12_教学提示顺序投料.png")
+	game.tutorial.active=false;game.tutorial.overlay.hide()
+	var pause_elapsed=game.simmer.elapsed
+	game.help_panel.show();game.simmer.tick(8);game.help_panel.hide()
+	check(is_equal_approx(game.simmer.elapsed,pause_elapsed),"Opening help pauses the shared cook timer without changing insertion times")
+	click(game.prep.ready_rect(1).get_center())
+	check(game.simmer.units(1)==0 and is_equal_approx(game.simmer.units(0),1),"Egg begins at zero when inserted at global cell one")
+	game.simmer.tick(8)
+	drag(game.prep.ready_rect(2).get_center(),Vector2(445,545))
+	check(game.simmer.units(2)==0 and is_equal_approx(game.simmer.units(0),3),"Real drag puts prepared greens in at cell three and starts them at zero")
+	var state=game.simmer.to_save().duplicate(true);game.simmer.restore(state)
+	check(is_equal_approx(game.simmer.global_units(),3) and is_equal_approx(game.simmer.portions[1].added_at,4) and is_equal_approx(game.simmer.portions[2].added_at,12),"Save restores shared elapsed time and separate insertion timestamps")
+	game.v4.update_pot();move(Vector2(640,250));game.simmer.refresh();await capture("10_一条时间条顺序投料.png")
+	game.simmer.tick(8)
+	check(game.stage==4 and game.simmer.quality(0)=="最佳" and game.simmer.quality(1)=="最佳" and game.simmer.quality(2)=="最佳","Beef five, egg four and greens two cells reach best doneness at common finish")
+	check(not game.simmer.portions[0].lifted and not game.simmer.portions[1].lifted and not game.simmer.portions[2].lifted,"All ingredients stay in pot until shared stop")
+	click(Vector2(445,561))
+	check(game.stage==5 and game.simmer.finished and game.simmer.perfect,"One stop plates all ingredients and yields perfect ramen")
+	check(game.v5.guide_override.contains("刚刚好"),"Robot praises correct timing")
+	var frozen=game.simmer.elapsed;game.simmer.tick(10)
+	check(is_equal_approx(game.simmer.elapsed,frozen),"Cooking clock freezes after shared stop")
+	check(not game.service.eating and game.bowl.visible,"Finished bowl remains on our own counter until served")
+	await capture("11_统一关火完美面.png")
+	clear_meal();game.prep.stock[1]+=2;game.prep.stock[2]+=2;game.prep.stock[0]+=2;game.prep.stock[3]+=2
+	game._select(1);game.prep.tick(1);var prepared_save=game.prep.to_save().duplicate(true);var ready_stock=game.prep.stock[1]
+	game.prep.restore(prepared_save)
+	check(game.prep.staged_food.has(1) and game.prep.stock[1]==ready_stock,"Prepared portion survives save without double charging inventory")
+	game._reset_bowl();check(game.prep.staged_food.has(1),"Resetting a bowl preserves unused prepared portions")
+	drag(game.prep.ready_rect(1).get_center(),Vector2(980,649))
+	check(not game.prep.staged_food.has(1) and game.prep.stock[1]==ready_stock,"Dragging prepared egg back to its tray frees preparation space without losing stock")
+	game._select(1);game.prep.tick(.5)
+	var return_click=InputEventMouseButton.new();return_click.position=game.prep.ready_rect(1).get_center();return_click.global_position=return_click.position;return_click.button_index=MOUSE_BUTTON_RIGHT;return_click.pressed=true;game.get_viewport().push_input(return_click)
+	check(not game.prep.staged_food.has(1) and game.prep.stock[1]==ready_stock,"Right-click also returns a prepared portion, preventing a full-board dead end")
+	game.stage=3;game.prep.packet_stage=2;game._select(0,true);game._select(2,true);game._select(1,true);game._select(3)
+	game.simmer.tick(20);game._cook()
+	check(game.simmer.quality(2)=="过熟" and not game.simmer.perfect,"Putting greens in too early prevents perfect bowl despite correct recipe")
+	clear_meal();game.stage=3;game.prep.packet_stage=2;game._select(0,true);game.simmer.tick(4);game._cook()
+	check(game.stage==5 and game.simmer.quality(0)=="未到最佳" and not game.simmer.perfect,"Early common stop is allowed and correctly judges undercooked beef")
+	clear_meal();game.selected=[0,1];game.prep.stock[0]=2;game.prep.stock[1]=2
+	game.simmer.restore({"portions":{}})
+	check(game.selected.is_empty() and game.prep.staged_food.has(0) and game.prep.staged_food.has(1) and game.prep.stock[0]==3,"Old pre-fire save migrates ingredients onto board and restores reserved stock")
+	game.tutorial.restart();game.tutorial.advance_text();game.tutorial.advance_text();game.tutorial.tick(.1)
+	check(game.tutorial.words.text.find("捞起")<0 and game.tutorial.overlay.visible,"Tutorial teaches preparation without obsolete individual scooping")
+	game.stage=3;game.prep.packet_stage=2;game._select(3);game._select(0,true);game.simmer.tick(3.9);game.tutorial.tick(.1)
+	check(game.tutorial.step==game.tutorial.Lesson.DONENESS and game.tutorial.words.text.contains("鸡蛋"),"Tutorial follows actual ingredient timing and asks for egg after beef")
+	game.tutorial.skip()
+	print("KITCHEN_SEQUENCE_COMPLETE ",count," checks; failures=",failed)
+	game._shutdown()

@@ -1,0 +1,202 @@
+{
+  "sources": [
+    {
+      "key": "egg",
+      "author": "Anthousai",
+      "url": "https://freesound.org/people/Anthousai/sounds/336613/",
+      "license": [
+        "http://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "public_preview": "https://cdn.freesound.org/previews/336/336613_5923045-hq.mp3"
+    },
+    {
+      "key": "chop",
+      "author": "MarleneAyni",
+      "url": "https://freesound.org/people/MarleneAyni/sounds/569389/",
+      "license": [
+        "http://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "public_preview": "https://cdn.freesound.org/previews/569/569389_929621-hq.mp3"
+    },
+    {
+      "key": "boil",
+      "author": "aflor",
+      "url": "https://freesound.org/people/aflor/sounds/519480/",
+      "license": [
+        "http://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "public_preview": "https://cdn.freesound.org/previews/519/519480_7432083-hq.mp3"
+    },
+    {
+      "key": "water",
+      "author": "ahriik",
+      "url": "https://freesound.org/people/ahriik/sounds/585516/",
+      "license": [
+        "http://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "public_preview": "https://cdn.freesound.org/previews/585/585516_6657854-hq.mp3"
+    },
+    {
+      "key": "rain",
+      "author": "Duasun",
+      "url": "https://freesound.org/people/Duasun/sounds/468025/",
+      "license": [
+        "http://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "public_preview": "https://cdn.freesound.org/previews/468/468025_5503971-hq.mp3"
+    },
+    {
+      "key": "bowl",
+      "author": "tosha73",
+      "url": "https://freesound.org/people/tosha73/sounds/846372/",
+      "license": [
+        "https://creativecommons.org/licenses/by/4.0/"
+      ],
+      "public_preview": "https://cdn.freesound.org/previews/846/846372_10725617-hq.mp3"
+    },
+    {
+      "key": "bag",
+      "author": "L.i.Z.e.L.l.E_%2B",
+      "url": "https://freesound.org/people/L.i.Z.e.L.l.E_%2B/sounds/707734/",
+      "license": [
+        "http://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "public_preview": "https://cdn.freesound.org/previews/707/707734_14714586-hq.mp3"
+    }
+  ],
+  "edits": [
+    {
+      "file": "chop1.wav",
+      "source": "chop",
+      "trim_seconds": [
+        17.5451,
+        17.9251
+      ],
+      "duration": 0.38,
+      "peak_dbfs": -3,
+      "loop": false
+    },
+    {
+      "file": "chop2.wav",
+      "source": "chop",
+      "trim_seconds": [
+        18.4979,
+        18.8779
+      ],
+      "duration": 0.38,
+      "peak_dbfs": -3,
+      "loop": false
+    },
+    {
+      "file": "chop3.wav",
+      "source": "chop",
+      "trim_seconds": [
+        40.2485,
+        40.6285
+      ],
+      "duration": 0.38,
+      "peak_dbfs": -3,
+      "loop": false
+    },
+    {
+      "file": "tear.wav",
+      "source": "bag",
+      "trim_seconds": [
+        22.0191,
+        23.7691
+      ],
+      "duration": 1.75,
+      "peak_dbfs": -3,
+      "loop": false
+    },
+    {
+      "file": "rustle.wav",
+      "source": "bag",
+      "trim_seconds": [
+        21.3691,
+        22.0691
+      ],
+      "duration": 0.7,
+      "peak_dbfs": -6,
+      "loop": false
+    },
+    {
+      "file": "egg.wav",
+      "source": "egg",
+      "trim_seconds": [
+        0,
+        2.1748
+      ],
+      "duration": 2.1748,
+      "peak_dbfs": -3,
+      "loop": false
+    },
+    {
+      "file": "water.wav",
+      "source": "water",
+      "trim_seconds": [
+        0.1,
+        2.6
+      ],
+      "duration": 2.5,
+      "peak_dbfs": -5,
+      "loop": false
+    },
+    {
+      "file": "splash.wav",
+      "source": "water",
+      "trim_seconds": [
+        1.2,
+        2.1
+      ],
+      "duration": 0.9,
+      "peak_dbfs": -4,
+      "loop": false
+    },
+    {
+      "file": "bowl.wav",
+      "source": "bowl",
+      "trim_seconds": [
+        4.9687,
+        6.4687
+      ],
+      "duration": 1.5,
+      "peak_dbfs": -7,
+      "loop": false
+    },
+    {
+      "file": "boil.wav",
+      "source": "boil",
+      "trim_seconds": [
+        40,
+        52
+      ],
+      "duration": 11.75,
+      "peak_dbfs": -7,
+      "loop": true
+    },
+    {
+      "file": "rain.wav",
+      "source": "rain",
+      "trim_seconds": [
+        0.2,
+        10.4
+      ],
+      "duration": 9.95,
+      "peak_dbfs": -7,
+      "loop": true
+    },
+    {
+      "file": "tap.wav",
+      "source": "chop",
+      "trim_seconds": [
+        18.4979,
+        18.6279
+      ],
+      "duration": 0.13,
+      "peak_dbfs": -12,
+      "loop": false
+    }
+  ],
+  "processing": "Public MP3 previews of field recordings; 65 Hz high-pass, transient selection, trim, fade, peak normalization, 44.1 kHz stereo PCM16. No synthesized kitchen sounds."
+}

@@ -1,0 +1,926 @@
+[gd_scene format=4]
+
+[ext_resource type="Shader" path="res://shaders/paper.gdshader" id="1_hggpq"]
+[ext_resource type="Texture2D" path="res://assets/road_region.png" id="2_uiy05"]
+[ext_resource type="Texture2D" path="res://assets/cast_road.png" id="3_m0etc"]
+[ext_resource type="Texture2D" path="res://assets/rv_atlas_v3.png" id="4_yhrac"]
+[ext_resource type="Shader" path="res://shaders/weather.gdshader" id="5_c001v"]
+[ext_resource type="Texture2D" path="res://assets/bowl.png" id="6_gi055"]
+[ext_resource type="Texture2D" path="res://assets/ingredients.png" id="7_av1gr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hnog2"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("2_uiy05")
+shader_parameter/tint = Color(0.9928558, 0.99393165, 0.9949784, 1)
+shader_parameter/fill = 0.96
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = true
+shader_parameter/cabin = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uov8b"]
+_surfaces = [{
+"aabb": AABB(-4.45, -1.175, -4.5, 9.65, 4.2, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "wasteland.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hggpq"]
+resource_name = "rv_layers_Exterior_Skyline_mesh"
+_surfaces = [{
+"aabb": AABB(-4.45, -1.175, -4.5, 9.65, 4.2, 1e-05),
+"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "wasteland.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_uov8b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xekww"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("3_m0etc")
+shader_parameter/tint = Color(0.99859095, 0.99825794, 0.9975406, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.0
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_u78yq"]
+_surfaces = [{
+"aabb": AABB(-1.75, -1.295, -1.5, 4.5, 3.9, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "traveller.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uiy05"]
+resource_name = "rv_layers_Customer_mesh"
+_surfaces = [{
+"aabb": AABB(-1.75, -1.295, -1.5, 4.5, 3.9, 1e-05),
+"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "traveller.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_u78yq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgnq0"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_psdoc"]
+_surfaces = [{
+"aabb": AABB(-7.85, 2.675, 0, 15.7, 1.7, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("MzP7wDMzK0AAAACAMzP7QAAAjEAAAACAMzP7QDMzK0AAAACAMzP7wAAAjEAAAACA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m0etc"]
+resource_name = "rv_layers_Upper_Cabin_mesh"
+_surfaces = [{
+"aabb": AABB(-7.85, 2.675, 0, 15.7, 1.7, 1e-05),
+"attribute_data": PackedByteArray("AAAAANTyRj4AAIA/AAAAAAAAgD/U8kY+AAAAAAAAAAA="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("MzP7wDMzK0AAAACAMzP7QAAAjEAAAACAMzP7QDMzK0AAAACAMzP7wAAAjEAAAACA/3//f////7//f/9/////v/9//3////+//3//f////78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_psdoc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_32k3j"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_so7x1"]
+_surfaces = [{
+"aabb": AABB(-7.85, -1.105, 0, 3.7799997, 3.78, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("MzP7wKRwjb8AAACAcT2CwDMzK0AAAACAcT2CwKRwjb8AAACAMzP7wDMzK0AAAACA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yhrac"]
+resource_name = "rv_layers_Left_Wall_mesh"
+_surfaces = [{
+"aabb": AABB(-7.85, -1.105, 0, 3.7799997, 3.78, 1e-05),
+"attribute_data": PackedByteArray("AAAAAEJUID/tinY+1PJGPu2Kdj5CVCA/AAAAANTyRj4="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("MzP7wKRwjb8AAACAcT2CwDMzK0AAAACAcT2CwKRwjb8AAACAMzP7wDMzK0AAAACA/3//f////7//f/9/////v/9//3////+//3//f////78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_so7x1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xmbg"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_d8ewg"]
+_surfaces = [{
+"aabb": AABB(4.82, -1.105, 0, 3.0299997, 3.78, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("cT2aQKRwjb8AAACAMzP7QDMzK0AAAACAMzP7QKRwjb8AAACAcT2aQDMzK0AAAACA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_c001v"]
+resource_name = "rv_layers_Right_Wall_mesh"
+_surfaces = [{
+"aabb": AABB(4.82, -1.105, 0, 3.0299997, 3.78, 1e-05),
+"attribute_data": PackedByteArray("+JdOP0JUID8AAIA/1PJGPgAAgD9CVCA/+JdOP9TyRj4="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("cT2aQKRwjb8AAACAMzP7QDMzK0AAAACAMzP7QKRwjb8AAACAcT2aQDMzK0AAAACA/3//f////7//f/9/////v/9//3////+//3//f////78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_d8ewg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1h6gc"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hk1lt"]
+_surfaces = [{
+"aabb": AABB(-4.07, -1.505, 0.25, 8.89, 0.54, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gi055"]
+resource_name = "rv_layers_Window_Ledge_mesh"
+_surfaces = [{
+"aabb": AABB(-4.07, -1.505, 0.25, 8.89, 0.54, 1e-05),
+"attribute_data": PackedByteArray("oj0HrJfOO5yXzgesoj07nA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_hk1lt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fb4v8"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3fi5b"]
+_surfaces = [{
+"aabb": AABB(-4.07, -2.125, 0.32, 8.89, 0.62, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_av1gr"]
+resource_name = "rv_layers_Counter_Back_mesh"
+_surfaces = [{
+"aabb": AABB(-4.07, -2.125, 0.32, 8.89, 0.62, 1e-05),
+"attribute_data": PackedByteArray("oj0rvpfOB6yXziu+oj0HrA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_3fi5b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rlbcr"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_a0grf"]
+_surfaces = [{
+"aabb": AABB(-7.85, -4.375, 0.65, 3.1999998, 3.27, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hnog2"]
+resource_name = "rv_layers_Fridge_mesh"
+_surfaces = [{
+"aabb": AABB(-7.85, -4.375, 0.65, 3.1999998, 3.27, 1e-05),
+"attribute_data": PackedByteArray("AAD//y00U6AtNP//AABToA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_a0grf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pbq1k"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_b612q"]
+_surfaces = [{
+"aabb": AABB(-4.65, -4.375, 0.7, 0.5799999, 3.27, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6kdth"]
+resource_name = "rv_layers_Left_Packets_mesh"
+_surfaces = [{
+"aabb": AABB(-4.65, -4.375, 0.7, 0.5799999, 3.27, 1e-05),
+"attribute_data": PackedByteArray("LTT//6I9U6CiPf//LTRToA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_b612q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52lcs"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jj7fn"]
+_surfaces = [{
+"aabb": AABB(-4.07, -4.375, 0.8, 8.89, 2.25, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xekww"]
+resource_name = "rv_layers_Counter_Main_mesh"
+_surfaces = [{
+"aabb": AABB(-4.07, -4.375, 0.8, 8.89, 2.25, 1e-05),
+"attribute_data": PackedByteArray("oj3//5fOK76Xzv//oj0rvg=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_jj7fn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qr4s"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4wm4x"]
+_surfaces = [{
+"aabb": AABB(4.82, -4.375, 0.45, 3.0299997, 3.27, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4td8j"]
+resource_name = "rv_layers_Plant_Base_mesh"
+_surfaces = [{
+"aabb": AABB(4.82, -4.375, 0.45, 3.0299997, 3.27, 1e-05),
+"attribute_data": PackedByteArray("l87/////U6D/////l85ToA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4wm4x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7iv8"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pkkso"]
+_surfaces = [{
+"aabb": AABB(-5.15, -3.735, 0.98, 1.21, 1.2099998, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pgnq0"]
+resource_name = "rv_layers_Front_Noodle_Packet_mesh"
+_surfaces = [{
+"aabb": AABB(-5.15, -3.735, 0.98, 1.21, 1.2099998, 1e-05),
+"attribute_data": PackedByteArray("BixF7cE/38nBP0XtBizfyQ=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pkkso")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pak58"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vrbem"]
+_surfaces = [{
+"aabb": AABB(-3.34, -3.245, 1.03, 1.8999999, 0.8599999, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m0dv8"]
+resource_name = "rv_layers_Pot_Front_mesh"
+_surfaces = [{
+"aabb": AABB(-3.34, -3.245, 1.03, 1.8999999, 0.8599999, 1e-05),
+"attribute_data": PackedByteArray("iUnv3oRoxsWEaO/eiUnGxQ=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_vrbem")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mupph"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("4_yhrac")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ug14j"]
+_surfaces = [{
+"aabb": AABB(-0.74, -3.495, 0.96, 2.82, 1.1399999, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_32k3j"]
+resource_name = "rv_layers_Chopping_Board_mesh"
+_surfaces = [{
+"aabb": AABB(-0.74, -3.495, 0.96, 2.82, 1.1399999, 1e-05),
+"attribute_data": PackedByteArray("7nNA5umh5cTpoUDm7nPlxA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "rv_atlas.png",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAID/////AAAAgP//AAAAAACAAAD//wAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ug14j")
+
+[sub_resource type="Environment" id="Environment_dr6a7"]
+background_mode = 1
+background_color = Color(0.1882353, 0.23529412, 0.25490198, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.85852784, 0.9179031, 0.93857515, 1)
+ambient_light_energy = 0.46778888
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_318ce"]
+render_priority = 0
+shader = ExtResource("5_c001v")
+shader_parameter/rain = 0.0
+shader_parameter/dust = 0.0
+shader_parameter/haze = 0.0
+shader_parameter/elapsed = 0.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rhwrd"]
+_surfaces = [{
+"aabb": AABB(-4.1, -1.035, -0.5, 8.969999, 3.75, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAgD8AAIA/AAAAAAAAAAAAAAAA"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("MzODwOF6hL8AAAC/CtebQOF6hL8AAAC/CtebQI/CLUAAAAC/MzODwOF6hL8AAAC/CtebQI/CLUAAAAC/MzODwI/CLUAAAAC//3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5xr48"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("6_gi055")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xbad0"]
+_surfaces = [{
+"aabb": AABB(-1.01, -3.865, 1.5, 3.27, 2.24, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAgD8AAIA/AAAAAAAAAAAAAAAA"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("rkeBvylcd8AAAMA/16MQQClcd8AAAMA/16MQQAAA0L8AAMA/rkeBvylcd8AAAMA/16MQQAAA0L8AAMA/rkeBvwAA0L8AAMA//3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gblod"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("7_av1gr")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_l3gjd"]
+_surfaces = [{
+"aabb": AABB(-0.51, -2.835, 1.6, 1.0699999, 0.6500001, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAAD+rqqo+AAAAP6uqqj4AAAAAAAAAAAAAAD+rqqo+AAAAAAAAAAAAAAAA"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("XI8Cv6RwNcDNzMw/KVwPP6RwNcDNzMw/KVwPPwrXC8DNzMw/XI8Cv6RwNcDNzMw/KVwPPwrXC8DNzMw/XI8CvwrXC8DNzMw//3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w34pj"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("7_av1gr")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mb4ki"]
+_surfaces = [{
+"aabb": AABB(-0.2, -2.795, 1.615, 1.12, 0.82000005, 1e-05),
+"attribute_data": PackedByteArray("q6qqPgAAAD+rqio/AAAAP6uqKj8AAAAAq6qqPgAAAD+rqio/AAAAAKuqqj4AAAAA"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("zcxMvkjhMsBSuM4/H4VrP0jhMsBSuM4/H4VrP83M/L9SuM4/zcxMvkjhMsBSuM4/H4VrP83M/L9SuM4/zcxMvs3M/L9SuM4//3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c5pg4"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("7_av1gr")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_c4elh"]
+_surfaces = [{
+"aabb": AABB(0.74, -2.875, 1.63, 1.06, 0.70000005, 1e-05),
+"attribute_data": PackedByteArray("q6oqPwAAAD8AAIA/AAAAPwAAgD8AAAAAq6oqPwAAAD8AAIA/AAAAAKuqKj8AAAAA"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("pHA9PwAAOMDXo9A/ZmbmPwAAOMDXo9A/ZmbmPzMzC8DXo9A/pHA9PwAAOMDXo9A/ZmbmPzMzC8DXo9A/pHA9PzMzC8DXo9A//3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_alxpo"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("7_av1gr")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0t41t"]
+_surfaces = [{
+"aabb": AABB(0.36, -2.925, 1.645, 0.65, 0.41999984, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAgD+rqqo+AACAP6uqqj4AAAA/AAAAAAAAgD+rqqo+AAAAPwAAAAAAAAA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("7FG4PjMzO8Bcj9I/rkeBPzMzO8Bcj9I/rkeBP+xRIMBcj9I/7FG4PjMzO8Bcj9I/rkeBP+xRIMBcj9I/7FG4PuxRIMBcj9I//3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1x5bi"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("7_av1gr")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ofake"]
+_surfaces = [{
+"aabb": AABB(-0.59, -3.085, 1.66, 1.0999999, 0.6500001, 1e-05),
+"attribute_data": PackedByteArray("q6qqPgAAgD+rqio/AACAP6uqKj8AAAA/q6qqPgAAgD+rqio/AAAAP6uqqj4AAAA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("PQoXv6RwRcDhetQ/XI8CP6RwRcDhetQ/XI8CPwrXG8DhetQ/PQoXv6RwRcDhetQ/XI8CPwrXG8DhetQ/PQoXvwrXG8DhetQ//3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hcfn6"]
+render_priority = 0
+shader = ExtResource("1_hggpq")
+shader_parameter/art = ExtResource("7_av1gr")
+shader_parameter/tint = Color(0.9978756, 0.9977239, 0.9972253, 1)
+shader_parameter/fill = 0.91
+shader_parameter/night = 0.01005050633883364
+shader_parameter/sunset = null
+shader_parameter/overcast = null
+shader_parameter/exterior = false
+shader_parameter/cabin = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hlvvp"]
+_surfaces = [{
+"aabb": AABB(0.4, -2.915, 1.675, 0.89, 0.6199999, 1e-05),
+"attribute_data": PackedByteArray("q6oqPwAAgD8AAIA/AACAPwAAgD8AAAA/q6oqPwAAgD8AAIA/AAAAP6uqKj8AAAA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("zczMPlyPOsBmZtY/uB6lP1yPOsBmZtY/uB6lP0jhEsBmZtY/zczMPlyPOsBmZtY/uB6lP0jhEsBmZtY/zczMPkjhEsBmZtY//3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[node name="PaperWorld" type="Node3D" unique_id=888243801]
+
+[node name="ArtLayers" type="Node3D" parent="." unique_id=618432922]
+
+[node name="Exterior_Skyline" type="MeshInstance3D" parent="ArtLayers" unique_id=151658628]
+material_override = SubResource("ShaderMaterial_hnog2")
+mesh = SubResource("ArrayMesh_hggpq")
+
+[node name="Customer" type="MeshInstance3D" parent="ArtLayers" unique_id=1932131832]
+material_override = SubResource("ShaderMaterial_xekww")
+mesh = SubResource("ArrayMesh_uiy05")
+
+[node name="Upper_Cabin" type="MeshInstance3D" parent="ArtLayers" unique_id=891843909]
+material_override = SubResource("ShaderMaterial_pgnq0")
+mesh = SubResource("ArrayMesh_m0etc")
+
+[node name="Left_Wall" type="MeshInstance3D" parent="ArtLayers" unique_id=385981856]
+material_override = SubResource("ShaderMaterial_32k3j")
+mesh = SubResource("ArrayMesh_yhrac")
+
+[node name="Right_Wall" type="MeshInstance3D" parent="ArtLayers" unique_id=781764157]
+material_override = SubResource("ShaderMaterial_2xmbg")
+mesh = SubResource("ArrayMesh_c001v")
+
+[node name="Window_Ledge" type="MeshInstance3D" parent="ArtLayers" unique_id=1534902294]
+material_override = SubResource("ShaderMaterial_1h6gc")
+mesh = SubResource("ArrayMesh_gi055")
+
+[node name="Counter_Back" type="MeshInstance3D" parent="ArtLayers" unique_id=474682400]
+material_override = SubResource("ShaderMaterial_fb4v8")
+mesh = SubResource("ArrayMesh_av1gr")
+
+[node name="Fridge" type="MeshInstance3D" parent="ArtLayers" unique_id=724043845]
+material_override = SubResource("ShaderMaterial_rlbcr")
+mesh = SubResource("ArrayMesh_hnog2")
+
+[node name="Left_Packets" type="MeshInstance3D" parent="ArtLayers" unique_id=2137876243]
+material_override = SubResource("ShaderMaterial_pbq1k")
+mesh = SubResource("ArrayMesh_6kdth")
+
+[node name="Counter_Main" type="MeshInstance3D" parent="ArtLayers" unique_id=1953131343]
+material_override = SubResource("ShaderMaterial_52lcs")
+mesh = SubResource("ArrayMesh_xekww")
+
+[node name="Plant_Base" type="MeshInstance3D" parent="ArtLayers" unique_id=1538119400]
+material_override = SubResource("ShaderMaterial_6qr4s")
+mesh = SubResource("ArrayMesh_4td8j")
+
+[node name="Front_Noodle_Packet" type="MeshInstance3D" parent="ArtLayers" unique_id=53490225]
+material_override = SubResource("ShaderMaterial_r7iv8")
+mesh = SubResource("ArrayMesh_pgnq0")
+
+[node name="Pot_Front" type="MeshInstance3D" parent="ArtLayers" unique_id=1258962472]
+material_override = SubResource("ShaderMaterial_pak58")
+mesh = SubResource("ArrayMesh_m0dv8")
+
+[node name="Chopping_Board" type="MeshInstance3D" parent="ArtLayers" unique_id=1089038952]
+material_override = SubResource("ShaderMaterial_mupph")
+mesh = SubResource("ArrayMesh_32k3j")
+
+[node name="FixedServiceCamera" type="Camera3D" parent="." unique_id=939481383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+projection = 1
+current = true
+size = 8.75
+
+[node name="@WorldEnvironment@4" type="WorldEnvironment" parent="." unique_id=1813088113]
+environment = SubResource("Environment_dr6a7")
+
+[node name="ChangingDaylight" type="OmniLight3D" parent="." unique_id=1069933031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1538463, 4, 7)
+light_color = Color(1, 0.9490196, 0.85490197, 1)
+light_energy = 0.5939697
+omni_range = 30.0
+
+[node name="WarmCabinLamp" type="OmniLight3D" parent="." unique_id=646606212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.6, 2.8)
+light_color = Color(1, 0.81960785, 0.6039216, 1)
+light_energy = 0.5080404
+omni_range = 10.0
+
+[node name="HydroponicsLight" type="OmniLight3D" parent="." unique_id=885390678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+light_color = Color(0.5058824, 0.89411765, 0.8392157, 1)
+light_energy = 0.17582929
+omni_range = 7.0
+
+[node name="WeatherOutsideWindow" type="MeshInstance3D" parent="." unique_id=1934608781]
+position = Vector3(0, 0, -2)
+material_override = SubResource("ShaderMaterial_318ce")
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_rhwrd")
+
+[node name="ServingBowl" type="MeshInstance3D" parent="." unique_id=1780401904]
+visible = false
+material_override = SubResource("ShaderMaterial_5xr48")
+mesh = SubResource("ArrayMesh_xbad0")
+
+[node name="Topping_0" type="MeshInstance3D" parent="." unique_id=63497560]
+visible = false
+material_override = SubResource("ShaderMaterial_gblod")
+mesh = SubResource("ArrayMesh_l3gjd")
+
+[node name="Topping_1" type="MeshInstance3D" parent="." unique_id=239894611]
+visible = false
+material_override = SubResource("ShaderMaterial_w34pj")
+mesh = SubResource("ArrayMesh_mb4ki")
+
+[node name="Topping_2" type="MeshInstance3D" parent="." unique_id=630291078]
+visible = false
+material_override = SubResource("ShaderMaterial_c5pg4")
+mesh = SubResource("ArrayMesh_c4elh")
+
+[node name="Topping_3" type="MeshInstance3D" parent="." unique_id=1312978498]
+visible = false
+material_override = SubResource("ShaderMaterial_alxpo")
+mesh = SubResource("ArrayMesh_0t41t")
+
+[node name="Topping_4" type="MeshInstance3D" parent="." unique_id=446031105]
+visible = false
+material_override = SubResource("ShaderMaterial_1x5bi")
+mesh = SubResource("ArrayMesh_ofake")
+
+[node name="Topping_5" type="MeshInstance3D" parent="." unique_id=200170845]
+visible = false
+material_override = SubResource("ShaderMaterial_hcfn6")
+mesh = SubResource("ArrayMesh_hlvvp")
