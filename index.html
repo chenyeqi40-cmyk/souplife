@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#252727">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="荒路一碗：在灾后公路经营一辆泡面餐车。手机横屏触控，打开网页就能试玩，无需登录。">
+  <title>荒路一碗 · 手机试玩</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23f1dba2' d='M3 13h26v6l-5 8H8l-5-8z'/%3E%3Cpath fill='none' stroke='%23bd7545' stroke-width='3' d='M10 3v6m6-6v6m6-6v6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="shell.css">
+</head>
+<body>
+  <canvas id="canvas" tabindex="0" aria-label="荒路一碗游戏画面">浏览器需要支持 WebGL 2 才能运行游戏。</canvas>
+  <main id="welcome" aria-label="游戏加载界面">
+    <div class="scene" aria-hidden="true"></div>
+    <section class="ticket">
+      <p class="eyebrow">SOUPLIFE · 手机试玩</p>
+      <h1>荒路一碗</h1>
+      <p class="tagline">路还很长，先好好吃一碗。</p>
+      <div class="loading" id="loading">
+        <div class="load-caption"><span id="status" role="status">正在准备餐车…</span><span id="percent">0%</span></div>
+        <progress id="progress" max="100" value="0" aria-label="游戏加载进度"></progress>
+        <p id="download-note">首次加载后，已缓存的资源可重复使用。</p>
+      </div>
+      <button id="play" class="primary" hidden>开始试玩<span>横屏，带上耳机更有氛围</span></button>
+      <p id="error" role="alert" hidden></p>
+      <button id="retry" class="primary" hidden>重新加载</button>
+      <p class="footnote">无需登录 · 点击与拖动即可操作 <a href="credits/" target="_blank" rel="noopener" style="color:inherit;margin-left:8px">署名</a></p>
+    </section>
+    <span class="edition">一辆餐车 / 一路相逢</span>
+  </main>
+  <button id="fullscreen" aria-label="切换全屏" title="全屏" hidden>全屏</button>
+  <aside id="rotate" aria-live="polite" hidden><span class="phone" aria-hidden="true"></span><strong>把手机横过来</strong><span>餐车的操作台会更宽敞</span><button id="portrait-continue">继续当前方向</button></aside>
+  <script src="loader.js" defer></script>
+</body>
+</html>
