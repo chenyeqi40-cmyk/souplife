@@ -61,12 +61,18 @@
     const absolute = new URL(chunk.url, location.href).href;
     for (let attempt = 0; attempt < 3; attempt++) {
       let timeout;
+      let controller;
+      function keepDownloadAlive() {
+        clearTimeout(timeout);
+        if (controller) timeout = setTimeout(() => controller.abort(), 45000);
+      }
       try {
         let response = cache && await cache.match(absolute);
         const cached = !!response;
         if (!response) {
-          const controller = typeof AbortController === 'function' ? new AbortController() : null;
-          if (controller) timeout = setTimeout(() => controller.abort(), 45000);
+          controller = typeof AbortController === 'function' ? new AbortController() : null;
+          // Limit silence, not total duration: a slow connection can keep making progress.
+          keepDownloadAlive();
           response = await nativeFetch(absolute, { cache: 'force-cache', ...(controller ? { signal: controller.signal } : {}) });
         }
         if (!response.ok) throw new Error(`Resource download failed (${response.status})`);
@@ -76,12 +82,14 @@
         while (true) {
           const { value, done } = await reader.read();
           if (done) break;
+          if (value.length) keepDownloadAlive();
           if (offset + value.length > result.length) throw new Error('Unexpected game resource size');
           result.set(value, offset);
           offset += value.length;
           byteProgress.set(chunk.url, offset);
           paintProgress();
         }
+        clearTimeout(timeout);
         if (offset !== chunk.bytes) throw new Error('Incomplete game download');
         if (crypto.subtle) {
           const hashBytes = new Uint8Array(await crypto.subtle.digest('SHA-256', result));
